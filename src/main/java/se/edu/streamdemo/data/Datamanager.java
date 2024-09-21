@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class Datamanager {
+    public static final String TODO = "T";
     private File dataFile;
 
     public File getDataFile() {
@@ -57,6 +58,7 @@ public class Datamanager {
             ArrayList<String> dataItems = readFile();
             taskList = parse(dataItems);
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
         return taskList;
@@ -68,7 +70,7 @@ public class Datamanager {
             String taskDescription = getTaskDescription(line);
             String taskType = getTaskType(line);
             switch (taskType) {
-            case "T":
+            case TODO:
                 Todo todo = new Todo(taskDescription);
                 allTasks.add(todo);
                 break;
